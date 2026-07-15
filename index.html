@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ana Lyssa ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff5f8f,#ffb3c6);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    width:90%;
+    max-width:600px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:40px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    z-index:10;
+}
+
+h1{
+    font-size:3rem;
+}
+
+p{
+    font-size:1.3rem;
+    margin-top:15px;
+}
+
+.botoes{
+    margin-top:30px;
+}
+
+button{
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    font-size:20px;
+    margin:10px;
+}
+
+#sim{
+    background:#ff1744;
+    color:white;
+}
+
+#sim:hover{
+    transform:scale(1.08);
+}
+
+#nao{
+    background:white;
+    color:#ff1744;
+    position:relative;
+}
+
+#resultado{
+    display:none;
+    margin-top:25px;
+    font-size:30px;
+    animation:pisca 1s infinite;
+}
+
+@keyframes pisca{
+    50%{
+        transform:scale(1.1);
+    }
+}
+
+.coracao{
+    position:absolute;
+    color:#ff1744;
+    animation:cair linear infinite;
+}
+
+@keyframes cair{
+    from{
+        transform:translateY(-10vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+
+.explosao{
+    position:absolute;
+    font-size:30px;
+    animation:explodir 1.8s forwards;
+}
+
+@keyframes explodir{
+    from{
+        transform:translate(0,0) scale(0);
+        opacity:1;
+    }
+    to{
+        transform:translate(var(--x),var(--y)) scale(2);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>❤️ Ana Lyssa ❤️</h1>
+
+<p>
+Desde que você entrou na minha vida,
+tudo ficou mais bonito.
+</p>
+
+<p>
+Seu sorriso ilumina meus dias e eu queria viver muitos momentos ao seu lado.
+</p>
+
+<h2 style="margin-top:25px;">
+Eu te amo muito! ❤️
+</h2>
+
+<h2 style="margin-top:15px;">
+Quer namorar comigo? 💍🥹
+</h2>
+
+<div class="botoes">
+<button id="sim">SIM ❤️</button>
+<button id="nao">NÃO 😅</button>
+</div>
+
+<div id="resultado">
+💖 Você acabou de fazer a pessoa mais feliz do mundo! 💖
+</div>
+
+</div>
+
+<script>
+
+function criarCoracao(){
+    const c=document.createElement("div");
+    c.className="coracao";
+    c.innerHTML="❤️";
+    c.style.left=Math.random()*100+"vw";
+    c.style.fontSize=(15+Math.random()*25)+"px";
+    c.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(c);
+
+    setTimeout(()=>{
+        c.remove();
+    },6000);
+}
+
+setInterval(criarCoracao,200);
+
+const nao=document.getElementById("nao");
+
+nao.addEventListener("mouseover",()=>{
+
+    nao.style.position="absolute";
+
+    nao.style.left=Math.random()*(window.innerWidth-120)+"px";
+
+    nao.style.top=Math.random()*(window.innerHeight-60)+"px";
+
+});
+
+document.getElementById("sim").onclick=function(){
+
+document.getElementById("resultado").style.display="block";
+
+for(let i=0;i<80;i++){
+
+let e=document.createElement("div");
+
+e.className="explosao";
+
+e.innerHTML="❤️";
+
+e.style.left="50%";
+
+e.style.top="50%";
+
+e.style.setProperty("--x",(Math.random()*800-400)+"px");
+
+e.style.setProperty("--y",(Math.random()*600-300)+"px");
+
+document.body.appendChild(e);
+
+setTimeout(()=>e.remove(),1800);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
