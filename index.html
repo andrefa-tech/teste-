@@ -1,32 +1,246 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Convite para Nadya 💖</title>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Um pedido especial ❤️</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;background:linear-gradient(#040414,#10103d);height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff}
-.stars{position:fixed;inset:0}.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate}@keyframes twinkle{from{opacity:.2}to{opacity:1}}
-.card{position:relative;z-index:2;width:min(92%,700px);padding:35px;border-radius:24px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);text-align:center;box-shadow:0 0 30px rgba(0,0,0,.4)}
-h1{font-size:42px}h3{margin:10px 0 18px;color:#ffd66e}
-#count{display:flex;justify-content:center;gap:12px;margin:18px 0}.box{background:rgba(255,255,255,.12);padding:12px;border-radius:14px;width:90px}.box b{font-size:30px;display:block}
-p{font-size:20px;line-height:1.6;min-height:170px}
-button{margin:12px;padding:14px 28px;border:none;border-radius:30px;font-size:18px;cursor:pointer}#sim{background:#ff4f88;color:#fff}#nao{background:#fff}
-#msg{margin-top:20px;font-size:24px;color:#8dff9b}
-.conf{position:fixed;width:8px;height:8px;animation:fall 3s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
-</style></head><body>
-<div class="stars"></div>
-<div class="card">
-<h1>💖 Nadya 💖</h1>
-<h3>🍻 Sexta-feira • 17/07/2026 • 20:00</h3>
-<div id="count"><div class="box"><b id=h>00</b>Horas</div><div class="box"><b id=m>00</b>Min</div><div class="box"><b id=s>00</b>Seg</div></div>
-<p id="txt"></p>
-<button id="sim">Claro! ❤️</button><button id="nao">Não 😅</button>
-<div id="msg"></div>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0, #ff8fab);
+}
+
+/* Corações flutuantes */
+.heart {
+    position: absolute;
+    bottom: -50px;
+    color: #ff1744;
+    font-size: 25px;
+    animation: subir linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px 25px;
+    text-align: center;
+    background: rgba(255,255,255,0.88);
+    border-radius: 30px;
+    box-shadow: 0 15px 50px rgba(180,0,60,0.25);
+}
+
+h1 {
+    color: #e91e63;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #ff4081;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #744052;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.big-heart {
+    font-size: 75px;
+    animation: bater 1s infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes bater {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    min-height: 65px;
+}
+
+button {
+    border: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#sim {
+    color: white;
+    background: #ff4081;
+    box-shadow: 0 5px 15px #ffb0c9;
+}
+
+#sim:hover {
+    transform: scale(1.12);
+    background: #e91e63;
+}
+
+#nao {
+    color: white;
+    background: #777;
+    position: fixed;
+    z-index: 10;
+}
+
+#mensagem {
+    display: none;
+    color: #e91e63;
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 25px;
+    animation: aparecer 1s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.rodape {
+    color: #d6336c;
+    font-size: 14px;
+    margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="big-heart">❤️</div>
+
+    <h1>Oi, Ana Lyssa! 💗</h1>
+
+    <h2>Tenho uma pergunta...</h2>
+
+    <p>
+        Desde que você apareceu, meus dias ficaram mais especiais.
+        E hoje eu queria te fazer uma pergunta que vem do fundo do meu coração...
+    </p>
+
+    <h1>Quer namorar comigo? 🥹💕</h1>
+
+    <div class="buttons">
+        <button id="sim" onclick="aceitou()">
+            SIM ❤️
+        </button>
+
+        <button id="nao">
+            NÃO 💔
+        </button>
+    </div>
+
+    <div id="mensagem">
+        AAAAAA ❤️😭<br><br>
+        EU TE AMO, ANA LYSSA! 💍💕<br>
+        Agora você é oficialmente minha namorada! 🥰
+    </div>
+
+    <div class="rodape">
+        Feito com carinho especialmente para você ❤️
+    </div>
 </div>
+
 <script>
-for(let i=0;i<220;i++){let e=document.createElement('div');e.className='star';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';e.style.animationDuration=(1+Math.random()*3)+'s';document.querySelector('.stars').appendChild(e);}
-const frase=`Estava pensando... amanhã é sexta! 🍻\n\nQue tal a gente sair, tomar alguma coisa, conversar bastante, dar muita risada e aproveitar a noite?\n\nVai ser muito mais legal se você estiver comigo.\n\nVocê topa esse rolê? ❤️`;
-let i=0;function type(){if(i<frase.length){txt.innerHTML+=frase[i]=='\n'?'<br>':frase[i];i++;setTimeout(type,35)}}type();
-const alvo=new Date("2026-07-17T20:00:00");
-function upd(){let d=alvo-new Date();if(d<=0){count.innerHTML="<h2>🎉 Chegou a hora do rolê!</h2>";return;}h.textContent=String(Math.floor(d/36e5)).padStart(2,'0');m.textContent=String(Math.floor(d%36e5/6e4)).padStart(2,'0');s.textContent=String(Math.floor(d%6e4/1000)).padStart(2,'0');}upd();setInterval(upd,1000);
-nao.onmouseover=()=>{nao.style.position='fixed';nao.style.left=Math.random()*(innerWidth-120)+'px';nao.style.top=Math.random()*(innerHeight-60)+'px';}
-sim.onclick=()=>{msg.innerHTML="🥹 Sabia! Agora é só esperar a sexta e brindar juntos! 🍻❤️";let c=['red','yellow','cyan','lime','orange','pink'];for(let i=0;i<220;i++){let d=document.createElement('div');d.className='conf';d.style.left=Math.random()*100+'vw';d.style.top='-10px';d.style.background=c[Math.floor(Math.random()*c.length)];document.body.appendChild(d);setTimeout(()=>d.remove(),3000);}}
-</script></body></html>
+
+// Criar corações flutuantes
+function criarCoracao() {
+    const coracao = document.createElement("div");
+    coracao.classList.add("heart");
+
+    const emojis = ["❤️", "💕", "💗", "💖", "💘", "💝"];
+    coracao.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+    coracao.style.left = Math.random() * 100 + "vw";
+    coracao.style.animationDuration = (3 + Math.random() * 5) + "s";
+    coracao.style.fontSize = (15 + Math.random() * 30) + "px";
+
+    document.body.appendChild(coracao);
+
+    setTimeout(() => {
+        coracao.remove();
+    }, 8000);
+}
+
+setInterval(criarCoracao, 250);
+
+// Botão NÃO fugindo
+const botaoNao = document.getElementById("nao");
+
+function fugir() {
+    const largura = window.innerWidth - botaoNao.offsetWidth - 20;
+    const altura = window.innerHeight - botaoNao.offsetHeight - 20;
+
+    const x = Math.random() * Math.max(0, largura) + 10;
+    const y = Math.random() * Math.max(0, altura) + 10;
+
+    botaoNao.style.left = x + "px";
+    botaoNao.style.top = y + "px";
+}
+
+botaoNao.addEventListener("mouseenter", fugir);
+botaoNao.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    fugir();
+});
+botaoNao.addEventListener("click", fugir);
+
+// Quando clicar em SIM
+function aceitou() {
+    document.querySelector(".buttons").style.display = "none";
+    document.getElementById("mensagem").style.display = "block";
+    botaoNao.style.display = "none";
+
+    document.querySelector("h2").innerHTML = "A melhor resposta possível! 🥹";
+    
+    for (let i = 0; i < 50; i++) {
+        setTimeout(criarCoracao, i * 70);
+    }
+}
+
+</script>
+
+</body>
+</html>
